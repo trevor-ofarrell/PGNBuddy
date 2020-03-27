@@ -1,0 +1,986 @@
+	html, body
+	{
+		height: 100%;
+	}
+	
+	body
+	{
+		margin: 0px;
+		padding: 0px;
+		background: #111111;
+		font-family: 'Didact Gothic', sans-serif;
+		font-size: 12pt;
+		font-weight: 200;
+		color: #FFF;
+	}
+	
+	
+	h1, h2, h3
+	{
+		margin: 0;
+		padding: 0;
+	}
+
+	.hometitle
+	{
+		position: relative;
+		text-align: center;
+	}
+
+	.hometitle2
+	{
+		position: relative;
+		text-align: center;
+		font-weight: 400;
+		margin-left: 60px;
+		margin-top: -150px;
+	}
+	
+	.byline
+	{
+		margin-left: 60px;
+	}
+
+	p, ol, ul
+	{
+		margin-top: 0;
+	}
+	
+	ol, ul
+	{
+		padding: 0;
+		list-style: none;
+	}
+	
+	p
+	{
+		line-height: 180%;
+	}
+	
+	a
+	{
+		color: #ee0000;
+	}
+	
+	a:hover
+	{
+		text-decoration: none;
+	}
+	
+	.container
+	{
+		margin: 0em auto;
+		width: 1200px;
+	}
+
+	.editpgnheader
+	{
+		left: 0em;
+		top: 0em;
+	}
+	
+/*********************************************************************************/
+/* Image Style                                                                   */
+/*********************************************************************************/
+
+	.image
+	{
+		display: inline-block;
+	}
+	
+	.image img
+	{
+		display: block;
+		width: 100%;
+	}
+	
+	.image-full
+	{
+		display: block;
+		width: 100%;
+		margin: 0 0 2em 0;
+	}
+	
+	.image-left
+	{
+		float: left;
+		margin: 0 2em 2em 0;
+	}
+	
+	.image-centered
+	{
+		display: block;
+		margin: 0 0 2em 0;
+	}
+	
+	.image-centered img
+	{
+		margin: 0 auto;
+		width: auto;
+	}
+
+/*********************************************************************************/
+/* List Styles                                                                   */
+/*********************************************************************************/
+	
+	.actions
+	{
+		padding-top: 30px;
+		padding-right: 0px;
+	}
+	ul.actions li
+	{
+		display: inline-block;
+		padding: 0em 0.50em;
+	}
+
+
+/*********************************************************************************/
+/* Social Icon Styles                                                            */
+/*********************************************************************************/
+
+	ul.contact
+	{
+		margin: 0;
+		padding: 2em 0em 0em 0em;
+		list-style: none;
+	}
+	
+	ul.contact li
+	{
+		display: inline-block;
+		padding: 0em 0.30em;
+		font-size: 1em;
+	}
+	
+	ul.contact li span
+	{
+		display: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	ul.contact li a
+	{
+		color: #FFF;
+	}
+	
+	ul.contact li a:before
+	{
+		display: inline-block;
+		background: #3f3f3f;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		border-radius: 20px;
+		text-align: center;
+		color: #FFFFFF;
+	}
+	
+	ul.contact li a.icon-twitter:before { background: #2DAAE4; }
+	ul.contact li a.icon-facebook:before { background: #39599F; }
+	ul.contact li a.icon-dribbble:before { background: #C4376B;	}
+	ul.contact li a.icon-tumblr:before { background: #31516A; }
+	ul.contact li a.icon-rss:before { background: #F2600B; }
+
+/*********************************************************************************/
+/* Button Style                                                                  */
+/*********************************************************************************/
+
+	.button
+	{
+		display: inline-block;
+		padding: 1em 2em 1em 2em;
+		letter-spacing: 0.10em;
+		margin-top: 2em;
+		padding: 1.40em 3em;
+		border: 2px solid rgba(255,255,255,1);
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 1em;
+		color: #FFF;
+		background: linear-gradient(180deg, rgba(166, 166, 166, 0.462) 0%, rgba(53, 53, 53, 0.414) 22%, rgba(0, 0, 0, 0.758) 100%); 
+	}
+
+	#filterdb
+	{
+		position: absolute;
+		top: 10px;
+		left: 18px;
+		width: 14.9%;
+		text-align: left;
+		font-size: 18px;
+		margin-left: 7px;
+		margin-top: 15px;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
+	#filterdbinput
+	{
+		position: absolute;
+		top: 40px;
+		left: 0px;
+		width: 71%;
+		height: 15px;
+    	text-align: left;
+		border: 1px solid #ccc;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
+	#uploadpgn
+	{
+		position: absolute;
+		top: 80px;
+		left: 5px;
+		width: 7.5%;
+    	text-align: left;
+		margin-left: 20px;
+		border: 1px solid #ccc;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
+	#uploadlichess
+	{
+		position: absolute;
+		top: 165px;
+		left: 5px;
+		width: 7.5%;
+    	text-align: left;
+		margin-left: 20px;
+		border: 1px solid #ccc;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
+	#lichessliterate
+	{
+		position: absolute;
+		top: 270px;
+		left: 5px;
+		width: 7.5%;
+		height: 55px;
+    	text-align: left;
+		margin-left: 20px;
+		border: 1px solid #ccc;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
+	#exportall
+	{
+		position: absolute;
+		top: 393px;
+		left: 5px;
+		width: 7.5%;
+		height: 65px;
+		text-align: left;
+		margin-left: 20px;
+		border: 1px solid #ccc;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
+	#tbd
+	{
+		position: absolute;
+		top: 525px;
+		left: 5px;
+		width: 7.5%;
+		height: 75px;
+		text-align: left;
+		margin-left: 20px;
+		border: 1px solid #ccc;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
+	input {
+		width: 40%;
+		height: 60%;
+		margin-bottom: 5vh;
+		background-color:transparent;
+		border-radius: 5px;
+		outline: none;
+		color: white;
+		caret-color: white;
+	  }
+
+	  input[type=submit] {
+		background: rgba(255,255,255,.2);
+		width: 20%;
+		padding: 2vh;
+		border: none;
+		cursor: pointer;
+		border-radius: 4px 4px;
+	  }
+
+	input[type="file"] {
+		display: none;
+	}
+	
+	.button-alt
+	{
+		padding: 1em 2em;
+		border-color: rgba(0,0,0,.8);
+		color: rgba(0,0,0,.8);
+	}
+		
+/*********************************************************************************/
+/* 4-column                                                                      */
+/*********************************************************************************/
+
+	.box1,
+	.box2,
+	.box3,
+	.box4
+	{
+		width: 235px;
+	}
+	
+	.box1,
+	.box2,
+	.box3
+	{
+		float: left;
+		margin-right: 20px;
+	}
+	
+	.box4
+	{
+		float: right;
+	}
+	
+/*********************************************************************************/
+/* 3-column                                                                      */
+/*********************************************************************************/
+
+	.boxA,
+	.boxB,
+	.boxC
+	{
+		width: 384px;
+	}
+
+	.boxA,
+	.boxB
+	{
+		float: left;
+		margin-right: 20px;
+	}
+	
+	.boxC
+	{
+		float: right;
+	}
+
+/*********************************************************************************/
+/* 2-column                                                                      */
+/*********************************************************************************/
+
+	.tbox1,
+	.tbox2
+	{
+		width: 575px;
+	}
+	
+	.tbox1
+	{
+		float: left;
+	}
+
+	.tbox2
+	{
+		float: right;
+	}
+
+	
+/*********************************************************************************/
+/* Heading Titles                                                                */
+/*********************************************************************************/
+
+	.title
+	{
+		margin-bottom: 3em;
+		padding-left: 110px;
+		width: 1000px;
+	}
+
+	.title1
+	{
+		margin-bottom: 3em;
+		padding-left: 70px;
+		width: 1000px;
+	}
+	
+	.titlebox
+	{
+		position: relative;
+		margin-left: 40px;
+		width: 80%;
+		height: 100px;
+		top: 0px;
+    	left: 0px;
+		padding: 70px;
+		border-radius: 35px;
+	}
+
+	.titlebox-dash
+	{
+		position: relative;
+		margin-left: 55px;
+		margin-top: -60px;
+		width: 85%;
+		height: 575px;
+		top: 0px;
+    	left: 0px;
+		background: rgb(129,129,129);
+		background: linear-gradient(180deg, rgba(82, 82, 82, 0.558) 0%, rgba(49, 49, 49, 0.945) 22%, rgba(0, 0, 0, 0.972) 100%); 
+		padding: 70px;
+		border-radius: 15px;
+	}
+
+	.titlebox-dash2
+	{
+		position: relative;
+		margin-left: 55px;
+		margin-top: -60px;
+		width: 85%;
+		height: 575px;
+		top: 0px;
+    	left: 0px;
+		background: rgb(129,129,129);
+		background: linear-gradient(180deg, rgba(65, 65, 65, 0.607) 0%, rgba(31, 31, 31, 0.91) 22%, rgba(0, 0, 0, 0.972) 100%); 
+		padding: 70px;
+		border-radius: 15px;
+	}
+	
+	.titlebox-dash3
+	{
+		position: relative;
+		margin-left: 55px;
+		margin-top: -60px;
+		width: 85%;
+		height: 575px;
+		top: 0px;
+    	left: 0px;
+		background: rgb(129,129,129);
+		background: linear-gradient(180deg, rgba(46, 46, 46, 0.607) 0%, rgba(31, 31, 31, 0.938) 22%, rgb(0, 0, 0) 100%); 
+		padding: 70px;
+		border-radius: 15px;
+	}
+	
+	.title h2
+	{
+		font-size: 2.7em;
+	}
+	
+	.hometitle
+	{
+		margin-top: -100px;
+	}
+	.title .byline
+	{
+		font-size: 1.3em;
+		color: rgba(255,255,255,0.60);
+	}
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+	#wrapper
+	{
+		position: relative;
+		padding: 5em 0em 7em 0em;
+		background: rgb(7, 7, 7);
+	}
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+	#header-wrapper
+	{
+		position: relative;
+		margin-top: -20px;
+		padding: 5em 0em 7em 0em;
+		background: #111111 url(images/checkmate.jpeg) no-repeat center;
+		background-size: cover;
+	}
+
+	#header
+	{
+		padding: 3.7em 0em;
+		height: 50%;
+		margin-top: -20px;
+	}
+
+/*********************************************************************************/
+/* Logo                                                                          */
+/*********************************************************************************/
+
+	#logo
+	{
+		position: absolute;
+		padding-left: 39px;
+		top: 2.6em;
+		left: 0;
+	}
+	
+	#logo h1
+	{
+		font-size: 2.6em;
+		color: #79C255;
+	}
+	
+	#logo a
+	{
+		text-decoration: none;
+		color: rgba(255,255,255,1);
+	}
+
+/*********************************************************************************/
+/* Menu                                                                          */
+/*********************************************************************************/
+
+	#menu
+	{
+		position: absolute;
+		padding-right: 25px;
+		top: 3.5em;
+		right: 0;
+	}
+	
+	#menu ul
+	{
+		display: inline-block;
+	}
+	
+	#menu li
+	{
+		display: block;
+		float: left;
+		text-align: center;
+	}
+	
+	#menu li a, #menu li span
+	{
+		padding: 1em 1.5em;
+		letter-spacing: 1px;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-size: 0.8em;
+		color: rgba(255,255,255,0.80);
+	}
+	
+	#menu li:hover a, #menu li.active a, #menu li.active span
+	{
+	}
+	
+	#menu .active a
+	{
+		border: 2px solid rgba(255,255,255,1);
+		border-radius: 6px;
+		color: rgba(255,255,255,1);
+	}
+	
+	#menu .icon
+	{
+	}
+
+/*********************************************************************************/
+/* Banner                                                                        */
+/*********************************************************************************/
+
+	#banner
+	{
+		padding-top: 10em;
+		text-align: center;
+	}
+	
+	#banner .title h2
+	{
+		font-size: 4em;
+	}
+	
+	#banner .title .byline
+	{
+		font-size: 2em;
+	}
+	
+	#banner .button
+	{
+		margin-top: 2em;
+		padding: 1.40em 3em;
+		border: 2px solid rgba(255,255,255,1);
+		border-radius: 6px;
+		font-weight: 700;
+		font-size: 1em;
+		
+	}
+	
+	.banner
+	{
+		margin-bottom: 2em;
+		margin-left: -50px;
+	}
+
+	.gamelist
+	{
+		position: relative;
+		margin-left: 980px;
+		margin-top: 15px;
+		top: 5px;
+		right: 10px;
+		width: 330px;
+		height: 500px;
+		overflow-y: scroll;
+	}
+	.gamedb
+	{
+		text-align: right;
+		z-index: 1;
+		margin-right: -185px;
+		margin-top: -210px;
+	}
+
+	.userdatabase
+	{
+		position: relative;
+		overflow-y: scroll;
+		width: 100%;
+		height: 590px;
+		margin-top: -200px;
+	}
+	.userdatabase2
+	{
+		position: relative;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		scrollbar-color: rgba(7, 7, 7, 0.766) rgba(58, 58, 58, 0.31);
+		scrollbar-width: 30px;
+		width: 1285px;
+		height: 712px;
+		margin-top: -228px;
+		border: gray;
+		border-width: 2px;
+		padding-left: 10px;
+		padding-right: 27px;
+	}
+
+	.userdatabase3
+	{
+		position: relative;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		scrollbar-color: rgba(7, 7, 7, 0.766) rgba(58, 58, 58, 0.31);
+		scrollbar-width: 30px;
+		width: 1285px;
+		height: 712px;
+		margin-top: -228px;
+		border: gray;
+		border-width: 2px;
+		padding-left: -10px;
+		margin-left: -30px;
+		padding-right: 27px;
+	}
+
+	body ::-webkit-scrollbar {
+		width: 15px;
+	}
+		
+	body ::-webkit-scrollbar-track {
+	    box-shadow: inset 0 0 5px grey; 
+		border-radius: 10px;
+		height: 100px;
+	}
+		
+	body ::-webkit-scrollbar-thumb {
+		background:black; 
+		border-radius: 10px;
+	}
+		
+	body ::-webkit-scrollbar-thumb:hover {
+		background:rgb(32, 32, 32); 
+	}
+
+	.dbbutton
+	{
+		background-color: rgba(239, 218, 180, 0.765);
+		color: rgb(22, 22, 22);
+		cursor: pointer;
+		padding: 18px;
+		width: 96%;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: left;
+		font-size: 15px;
+		margin-bottom: 2px;
+	}
+
+	.newbutton
+	{
+		display: inline-block;
+		padding: 1em 2em 1em 2em;
+		letter-spacing: 0.10em;
+		margin-top: .2em;
+		padding: 1.40em 3em;
+		font-family: Arial, Helvetica, sans-serif;
+		height: 3px;
+		width: 100%;
+		border: 2px solid rgb(181, 181, 181);
+		border-radius: 4px;
+		text-decoration: none;
+		font-weight: 500;
+		text-align: left;
+		font-size: 1.5em;
+		color: #FFF;
+		background: linear-gradient(180deg, rgba(77, 76, 76, 0.689) 0%, rgba(36, 35, 35, 0.924) 22%, rgba(0, 0, 0, 0.972) 100%); 
+	}
+
+	.activedb, .newbutton:hover {
+		background: linear-gradient(180deg, rgba(123, 123, 123, 0.689) 0%, rgba(56, 56, 56, 0.924) 22%, rgba(22, 22, 22, 0.972) 100%); 
+	}
+
+	.hiden
+	{
+		display: none;
+		height: 100%;
+		padding-bottom: 50px;
+	}
+
+	.dblistitem
+	{
+		height: 100%;
+	}
+
+	.delpgn
+	{
+		position: relative;
+		width: 42em;
+		margin-left: 700px;
+		margin-top: -150px;
+		left: 0px;
+		bottom: 0px;
+		padding-bottom: 0px;
+		z-index: 0;
+	}
+
+	#delpgn
+	{
+		background-color: #87020270;
+	}
+
+	.editpgn
+	{
+		position: relative;
+		width: 42em;
+		margin-left: 700px;
+		margin-top: -220px;
+		left: 0px;
+		bottom: 0px;
+		padding-bottom: 120px;
+		z-index: 0;
+	}
+
+	.downloadpgn
+	{
+		position: relative;
+		width: 42em;
+		margin-left: 700px;
+		margin-top: -340px;
+		left: 0px;
+		bottom: 0px;
+		padding-bottom: 259px;
+		z-index: 0;
+	}
+
+	.downloadjsonpgn
+	{
+		position: relative;
+		width: 42em;
+		margin-left: 700px;
+		margin-top: -290px;
+		left: 0px;
+		bottom: 0px;
+		padding-bottom: 189px;
+		z-index: 0;
+	}
+
+	#downloadjsonpgn:hover, #downloadpgn:hover, #editpgn:hover
+	{
+		background-color: #717171;
+	}
+
+	#delpgn:hover
+	{
+		background-color: rgba(255, 0, 0, 0.558);
+		border: 2px solid rgba(23, 156, 0, 0.551);
+	}
+
+	.button:hover
+	{
+		background: linear-gradient(180deg, rgba(80, 80, 80, 0.689) 0%, rgba(53, 53, 53, 0.924) 22%, rgba(12, 12, 12, 0.972) 100%); 
+	}
+
+	.filterbutton
+	{
+		display: inline-block;
+		padding: 1em 2em 1em 2em;
+		letter-spacing: 0.10em;
+		margin-top: 5em;
+		padding: 1.40em 3em;
+		border: 2px solid rgba(255,255,255,1);
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 1em;
+		color: #FFF;
+	}
+
+	.uploadtut
+	{
+		margin-top: -150px;
+		margin-bottom: 50px;
+	}
+
+	.lichessiframe
+	{
+		margin-left: -465px;
+		margin-bottom: 100px;
+		z-index: 2;
+	}
+
+	#editbutton
+	{
+		width: 40%;
+		display: -moz-inline-stack;
+		position: relative;
+		margin-right: 20px;
+		margin-left: 20px;
+		margin-top: 20px;
+	}
+
+/*********************************************************************************/
+/* Page                                                                          */
+/*********************************************************************************/
+
+	#page
+	{
+	}
+
+/*********************************************************************************/
+/* Content                                                                       */
+/*********************************************************************************/
+
+	#content
+	{
+	}
+
+/*********************************************************************************/
+/* Sidebar                                                                       */
+/*********************************************************************************/
+
+	#sidebar
+	{
+	}
+
+/*********************************************************************************/
+/* Footer                                                                        */
+/*********************************************************************************/
+
+	#footer
+	{
+	}
+
+/*********************************************************************************/
+/* Copyright                                                                     */
+/*********************************************************************************/
+
+	#copyright
+	{
+		overflow: hidden;
+		padding: 5em 0em;
+		border-top: 1px solid rgba(0,0,0,0.08);
+	}
+	
+	#copyright p
+	{
+		text-align: center;
+		font-size: 1em;
+		color: rgba(255,255,255,0.3);
+	}
+	
+	#copyright a
+	{
+		text-decoration: none;
+		color: rgba(255,255,255,0.6);
+	}
+
+
+/*********************************************************************************/
+/* Welcome                                                                       */
+/*********************************************************************************/
+
+	#welcome
+	{
+		position: relative;
+		padding: 7em 0em 7em 0em;
+		background: #3d3f15;
+		background-size: cover;
+		text-align: center;
+	}
+	
+	#welcome .container
+	{
+		width: 1000px;
+		padding: 0px 100px;
+		color: rgba(255,255,255,0.8);
+	}
+	
+	#welcome a
+	{
+		color: rgba(255,255,255,1);
+	}
+
+
+/*********************************************************************************/
+/* Extra                                                                         */
+/*********************************************************************************/
+
+	#three-column
+	{
+		text-align: center;
+		color: rgba(0,0,0,0.6);
+	}
+
+	#three-column .fa
+	{
+		display: block;
+		padding: 1em 0em;
+		color: rgba(0,0,0,1);
+		font-size: 2em;
+	}
+	
+	#three-column .title h2
+	{
+		font-weight: bold;
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	#three-column .title .byline
+	{
+		text-align: center;
+		color: rgba(0,0,0,.5);
+	}
+
