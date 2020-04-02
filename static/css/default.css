@@ -412,7 +412,7 @@
 	.title
 	{
 		margin-bottom: 3em;
-		padding-left: 110px;
+		padding-left: 70px;
 		width: 1000px;
 	}
 
@@ -669,8 +669,8 @@
 		overflow-y: scroll;
 		overflow-x: hidden;
 		scrollbar-color: rgba(7, 7, 7, 0.766) rgba(58, 58, 58, 0.31);
-		scrollbar-width: 30px;
-		width: 1285px;
+		scrollbar-width: 40px;
+		width: 1280px;
 		height: 712px;
 		margin-top: -228px;
 		border: gray;
@@ -686,13 +686,13 @@
 		overflow-x: hidden;
 		scrollbar-color: rgba(7, 7, 7, 0.766) rgba(58, 58, 58, 0.31);
 		scrollbar-width: 30px;
-		width: 1285px;
+		width: 1280px;
 		height: 712px;
 		margin-top: -228px;
 		border: gray;
 		border-width: 2px;
 		padding-left: -10px;
-		margin-left: -30px;
+		margin-left: 10px;
 		padding-right: 27px;
 	}
 

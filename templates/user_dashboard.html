@@ -96,7 +96,7 @@ Released   : 20140314
 														<div style="margin-top: 400px;"></div>
 													{% endif %}
 													{% if pg['frame'] %}
-														<iframe src="{{ pg['frame'] }}" width=760 height=500 frameborder=0 class="lichessiframe"></iframe>
+														<iframe src="{{ pg['frame'] }}" width=760 height=500 frameborder=0 class="lichessiframe" loading="lazy"></iframe>
 													{% endif %}
 													<form action="{{ url_for('main.downloadpgn') }}" method="post" class="downloadpgn">
 														<input type="hidden" value="{{ pg['pgnId'] }}" name="downloadpgn" />

@@ -11,8 +11,12 @@ import requests
 import sys
 from datetime import datetime
 import time
+import redis
+import hashlib
+import json
 
 main = Blueprint('main', __name__)
+r = redis.Redis()
 
 @main.route('/')
 def index():
@@ -70,22 +74,43 @@ def dashboard():
         current_user = User.query.filter_by(email=session['email']).first()
     except:
         return render_template('webindex.html')
-    games = db.session.query(pgn).filter_by(userId=current_user.id).all()
 
-    gamelist = []
-    for game in games:
-        gamelist.append(game.game)
+    if not r.keys('pgn*'):
 
-    pgnlist = []
-    pgns = db.session.query(pgn).filter_by(userId=current_user.id).all()
-    for pg in pgns:
-        pgnlist.append({
-            'name': str(pg.fileName),
-            'game': pg.game,
-            'folder': pg.folder,
-            'frame': pg.frame,
-            'pgnId': pg.pgnId
-        })
+        pgnlist = []
+        pgns = db.session.query(pgn).filter_by(userId=current_user.id).all()
+        for pg in pgns:
+            pgnlist.append({
+                'name': str(pg.fileName),
+                'game': pg.game,
+                'folder': pg.folder,
+                'frame': pg.frame,
+                'pgnId': pg.pgnId
+            })
+
+            pid = str(pg.pgnId)
+            mydict = {
+                'name': str(pg.fileName),
+                'game': str(pg.game),
+                'folder': str(pg.folder),
+                'frame': str(pg.frame),
+                'pgnId': str(pg.pgnId)
+            }
+            r.hset(name='pgn' + pid, key='pgn' + pid, value=json.dumps(mydict))
+
+    else:
+        rlist = []
+        pglist2 = []
+        pgnlist = r.keys('pgn*')
+        for pg in pgnlist:
+            pglist2.append(pg.decode())
+
+        for pg in pglist2:
+            res = json.loads(r.hget(pg, pg))
+            rlist.append(res)
+
+        pgnlist = rlist
+
     folderlist = []
     folders = db.session.query(pgn.folder).filter_by(
         userId=current_user.id).all()
@@ -96,9 +121,8 @@ def dashboard():
 
     return render_template(
         'user_dashboard.html',
-        games=gamelist,
         folders=folderlist,
-        pgnlist=pgnlist
+        pgnlist=pgnlist,
     )
 
 
