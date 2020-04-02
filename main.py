@@ -37,6 +37,7 @@ def profile():
 def deletepgn():
     pg = request.form['pgntodel']
     q = db.session.query(pgn).filter_by(pgnId=pg).one()
+    r.delete('pgn' + str(q.pgnId))
     db.session.delete(q)
     db.session.commit()
     return redirect(url_for('main.dashboard'))
@@ -102,6 +103,7 @@ def dashboard():
         rlist = []
         pglist2 = []
         pgnlist = r.keys('pgn*')
+
         for pg in pgnlist:
             pglist2.append(pg.decode())
 
@@ -138,14 +140,12 @@ def lichessupload():
             game_name = request.form['name']
 
         game_string = request.form['gamestring']
-        print(len(game_string), file=sys.stderr)
 
         if str(game_string)[:5] == "liche":
             game_string = game_string[12:]
 
         elif str(game_string)[:5] == "http:":
             game_string = game_string[19:]
-            print(game_string, file=sys.stderr)
 
         elif str(game_string)[:5] == "https":
             game_string = game_string[20:]
@@ -154,14 +154,18 @@ def lichessupload():
             game_string = game_string[:8]
 
         game_folder = request.form['folder']
-        lciframe = "https://lichess.org/embed/" + game_string + "?theme=wood4&bg=dark"
+        lciframe = "http://lichess.org/embed/" + game_string + "?theme=wood4&bg=dark"
         uid = current_user.id
 
-        re = requests.get("{}/{}?{}".format(
+        re = requests.get("{}/{}".format(
             'https://lichess.org/game/export',
-            game_string,
-            'pgnInJson=true'
-        ))
+            game_string),
+            params={
+                'pgnInJson': 'true',
+                'clocks': 'fasle',
+                'opening': 'true'
+            }
+        )
         new_pgn = pgn(
             userId=uid,
             game=re.text,
@@ -169,9 +173,18 @@ def lichessupload():
             folder=game_folder,
             frame=lciframe
         )
+        pgn_dict = {
+                    "pgnId": game_string,
+                    "game": str(re.text),
+                    "name": game_name,
+                    "folder": str(game_folder),
+                    "frame": str(lciframe)
+        }
+        r.hset(name='pgn' + game_string, key='pgn' + game_string, value=json.dumps(pgn_dict))
         db.session.add(new_pgn)
         db.session.commit()
         return redirect(url_for('main.dashboard'))
+
     try:
         current_user = User.query.filter_by(email=session['email']).first()
     except:
@@ -196,7 +209,6 @@ def lichessliterate():
 
         elif str(game_string)[:5] == "http:":
             game_string = game_string[19:]
-            print(game_string, file=sys.stderr)
 
         elif str(game_string)[:5] == "https":
             game_string = game_string[20:]
@@ -207,7 +219,12 @@ def lichessliterate():
         re = requests.get("{}/{}".format(
             'https://lichess.org/game/export',
             game_string),
-            params={"clocks": "false", "literate": "true", "evals": "true"}
+            params={
+                "opeing": "true",
+                "clocks": "true",
+                "literate": "true",
+                "evals": "true"
+            }
         )
         if request.form['name']:
             game_name = request.form['name']
@@ -225,6 +242,16 @@ def lichessliterate():
             folder=game_folder,
             frame=lciframe
         )
+        pgn_dict = {
+                    "pgnId": str(uid),
+                    "game": str(re.text),
+                    "name": game_name,
+                    "folder": str(game_folder),
+                    "frame": str(lciframe)
+        }
+        pid = str(uid)
+        print(pid, file=sys.stderr)
+        r.hset(name='pgn' + pid, key='pgn' + pid, value=json.dumps(pgn_dict))
         db.session.add(new_pgn)
         db.session.commit()
         return redirect(url_for('main.dashboard'))
@@ -341,7 +368,7 @@ def exportall():
 
         with open("Trevor_lichess_download.json", 'r') as fp:
             game_list = fp.readlines()
-
+        
         json_games = []
         year_list = []
         month_list = []
@@ -375,11 +402,23 @@ def exportall():
             )
             folder_name = "{} - {}".format("lichess upload", folder_name)
             lciframe = "{}{}{}".format(
-                "https://lichess.org/embed/",
+                "http://lichess.org/embed/",
                 game["id"],
                 "?theme=wood4&bg=dark"
             )
             try:
+                pgn_dict = {
+                    "pgnId": str(uid),
+                    "game": str(game["pgn"]),
+                    "name": "{} - {} - {} - id: {}".format(
+                        game["opening"]["name"],
+                        game["speed"],
+                        game_date,
+                        game["id"]
+                    ),
+                    "folder": str(folder_name),
+                    "frame": str(lciframe)
+                }
                 new_pgn = pgn(
                     userId=uid,
                     game=game["pgn"],
@@ -392,6 +431,8 @@ def exportall():
                     folder=folder_name,
                     frame=lciframe
                 )
+                pid = str(game["id"])
+                r.hset(name='pgn' + pid, key='pgn' + pid, value=json.dumps(pgn_dict))
                 db.session.add(new_pgn)
                 db.session.commit()
             except:
@@ -404,6 +445,7 @@ def exportall():
 def nothingyet():
     q = db.session.query(pgn).all()
     for pg in q:
+        r.delete('pgn' + str(pg.pgnId))
         db.session.delete(pg)
     db.session.commit()
     return redirect(url_for("main.dashboard"))

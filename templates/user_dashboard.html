@@ -22,6 +22,7 @@ Released   : 20140314
 <link href="static/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@15.1.1/dist/lazyload.min.js"></script>
 
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
@@ -96,7 +97,7 @@ Released   : 20140314
 														<div style="margin-top: 400px;"></div>
 													{% endif %}
 													{% if pg['frame'] %}
-														<iframe src="{{ pg['frame'] }}" width=760 height=500 frameborder=0 class="lichessiframe" loading="lazy"></iframe>
+														<iframe data-src="{{ pg['frame'] }}" width=760 height=500 frameborder=0 class="lazy" id="lichessiframe"></iframe>
 													{% endif %}
 													<form action="{{ url_for('main.downloadpgn') }}" method="post" class="downloadpgn">
 														<input type="hidden" value="{{ pg['pgnId'] }}" name="downloadpgn" />
@@ -130,5 +131,12 @@ Released   : 20140314
 <div id="copyright" class="container">
 		<p>&copy; PGNBuddy under GPL licensing. All rights reserved.</a>.</p>
 </div>
+<script>
+	var lazyLoadInstance = new LazyLoad({
+		elements_selector: ".lazy"
+		// ... more custom settings?
+	});
+	lazyLoadInstance.update();
+</script>
 </body>
 </html>

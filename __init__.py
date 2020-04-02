@@ -30,6 +30,11 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+    """@app.after_request
+    def add_header(response):
+        response.headers['X-Frame-Options'] = "ALLOW-FROM *"
+        return response"""
+
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
