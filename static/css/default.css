@@ -203,35 +203,6 @@
 		background: linear-gradient(180deg, rgba(166, 166, 166, 0.462) 0%, rgba(53, 53, 53, 0.414) 22%, rgba(0, 0, 0, 0.758) 100%); 
 	}
 
-	#filterdb
-	{
-		position: absolute;
-		top: 10px;
-		left: 18px;
-		width: 14.9%;
-		text-align: left;
-		font-size: 18px;
-		margin-left: 7px;
-		margin-top: 15px;
-    	display: inline-block;
-    	padding: 6px 12px;
-    	cursor: pointer;
-	}
-
-	#filterdbinput
-	{
-		position: absolute;
-		top: 40px;
-		left: 0px;
-		width: 71%;
-		height: 15px;
-    	text-align: left;
-		border: 1px solid #ccc;
-    	display: inline-block;
-    	padding: 6px 12px;
-    	cursor: pointer;
-	}
-
 	#uploadpgn
 	{
 		position: absolute;
@@ -423,6 +394,14 @@
 		width: 1000px;
 	}
 	
+	.form-title
+	{
+		margin-bottom: 3em;
+		padding-left: 70px;
+		width: 1000px;
+		margin-left: 30px;
+	}
+
 	.titlebox
 	{
 		position: relative;
@@ -833,6 +812,35 @@
 		background: linear-gradient(180deg, rgba(80, 80, 80, 0.689) 0%, rgba(53, 53, 53, 0.924) 22%, rgba(12, 12, 12, 0.972) 100%); 
 	}
 
+	#filterdb
+	{
+		position: absolute;
+		top: 10px;
+		left: 18px;
+		width: 15.6%;
+		text-align: left;
+		font-size: 18px;
+		margin-left: 7px;
+		margin-top: 15px;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
+	#filterdbinput
+	{
+		position: absolute;
+		top: 40px;
+		left: 0px;
+		width: 71%;
+		height: 15px;
+    	text-align: left;
+		border: 1px solid #ccc;
+    	display: inline-block;
+    	padding: 6px 12px;
+    	cursor: pointer;
+	}
+
 	.filterbutton
 	{
 		display: inline-block;
@@ -869,6 +877,13 @@
 		margin-right: 20px;
 		margin-left: 20px;
 		margin-top: 20px;
+	}
+
+	.asciiart {
+		font-family: monospace;
+		white-space: pre;
+		margin-left: -320px;
+		margin-top: 50px;
 	}
 
 /*********************************************************************************/

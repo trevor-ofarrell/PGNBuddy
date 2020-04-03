@@ -71,7 +71,26 @@ Released   : 20140314
 					<div class="userdatabase2">
 							<ul>
 								{% if not folders %}
-									<h1 style="position: relative; margin-top: 50px; font-weight: 400; font-size: 45px;">No PGN's to be displayed!</h1>
+									<div class="asciiart">
+										=||=   
+										o   |\ ,'`. /||\ ,'`. /|    o     
+				_   _   _   |\__      /\^/\ | `'`'`' || `'`'`' |  /\^/\   |\__     _   _   _ 
+			   | |_| |_| | /   o\__  |  /  ) \      /  \      /  |  /  ) /   o\__ | |_| |_| |
+				\       / |    ___=' | /  /   |    |    |    |   | /  / |    ___=' \       / 
+				 |     |  |    \      Y  /    |    |    |    |    Y  /  |    \      |     |
+				 |     |   \    \     |  |    |    |    |    |    |  |   \    \     |     |  
+				 |     |    >    \    |  |    |    |    |    |    |  |    >    \    |     |  
+				/       \  /      \  /    \  /      \  /      \  /    \  /      \  /       \ 
+			   |_________||________||______||________||________||______||________||_________|
+				   __         __       __       __        __       __       __         __   
+				  (  )       (  )     (  )     (  )      (  )     (  )     (  )       (  )  
+				   ><         ><       ><       ><        ><       ><       ><         ><   
+				  |  |       |  |     |  |     |  |      |  |     |  |     |  |       |  |  
+				 /    \     /    \   /    \   /    \    /    \   /    \   /    \     /    \ 
+				|______|   |______| |______| |______|  |______| |______| |______|   |______|
+									</div>
+									<h1 style="position: relative; margin-top: 100px; font-weight: 400; font-size: 65px;">
+										No PGN's to be displayed!</h1>
 								{% endif %}
 								{% for folder in folders %}
 								<li class="dblistitem">
