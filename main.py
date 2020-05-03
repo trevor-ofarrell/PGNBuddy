@@ -282,7 +282,6 @@ def uploadpgn():
             db.session.commit()
     return redirect(url_for('main.dashboard'))
 
-
 @main.route('/exportall', methods=['GET', 'POST'])
 def exportall():
     if request.method == 'POST':
