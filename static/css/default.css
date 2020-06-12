@@ -420,7 +420,7 @@
 		margin-left: 55px;
 		margin-top: -60px;
 		width: 85%;
-		height: 575px;
+		height: 74vh;
 		top: 0px;
     	left: 0px;
 		background: rgb(129,129,129);
@@ -650,7 +650,7 @@
 		scrollbar-color: rgba(7, 7, 7, 0.766) rgba(58, 58, 58, 0.31);
 		scrollbar-width: 40px;
 		width: 1280px;
-		height: 712px;
+		height: 88vh;
 		margin-top: -228px;
 		border: gray;
 		border-width: 2px;
