@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from flask import Flask
+from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
@@ -7,6 +8,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
+    CORS(app, support_credentials=True)
 
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
@@ -30,10 +32,10 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    """@app.after_request
+    @app.after_request
     def add_header(response):
         response.headers['X-Frame-Options'] = "ALLOW-FROM *"
-        return response"""
+        return response
 
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
