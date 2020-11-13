@@ -14,25 +14,150 @@ import time
 import redis
 import hashlib
 import json
-from flask_cors import CORS, cross_origin
 
 main = Blueprint('main', __name__)
-CORS(main, support_credentials=True)
 r = redis.Redis()
 
 @main.route('/')
 def index():
     return render_template('webindex.html')
 
-@main.route('/status')
-@cross_origin(supports_credentials=True)
-def status():
-    response = {'status': 'okay'}
-    return response
 
 @main.route('/homescreen')
 def home():
     return render_template('dashboard.html')
+
+
+@main.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+
+@main.route('/deletepgn', methods=['POST'])
+def deletepgn():
+    pg = request.form['pgntodel']
+    print(("the pgn id: ", pg), file=sys.stderr)
+    q = db.session.query(pgn).filter_by(pgnId=pg).one()
+    db.session.delete(q)
+    db.session.commit()
+    return redirect(url_for('main.dashboard'))
+
+
+@main.route('/filterdb', methods=['POST'])
+def filterdb():
+    Folder = request.form['folder']
+    gamelist = []
+    games = db.session.query(pgn).all()
+    for game in games:
+        gamelist.append(game.game)
+
+    pgnlist = []
+    pgns = db.session.query(pgn).filter_by(folder=Folder).all()
+    for pg in pgns:
+        pgnlist.append({
+            'name': str(pg.fileName),
+            'game': pg.game,
+            'folder': pg.folder,
+            'frame': pg.frame,
+            'pgnId': pg.pgnId
+        })
+    return render_template(
+        'filterdb.html',
+        games=gamelist,
+        folder=Folder,
+        pgnlist=pgnlist
+    )
+
+
+@main.route('/dashboard')
+def dashboard():
+    try:
+        current_user = User.query.filter_by(email=session['email']).first()
+    except:
+        return render_template('webindex.html')
+
+    pgnlist = []
+    pgns = db.session.query(pgn).filter_by(userId=current_user.id).all()
+    for pg in pgns:
+        pgnlist.append({
+            'name': str(pg.fileName),
+            'game': pg.game,
+            'folder': pg.folder,
+            'frame': pg.frame,
+            'pgnId': pg.pgnId
+        })
+     
+    folderlist = []
+    folders = db.session.query(pgn.folder).filter_by(
+        userId=current_user.id).all()
+
+    for folder in folders:
+        folderlist.append(str(folder))
+    folderlist = list(dict.fromkeys(folderlist))
+
+    return render_template(
+        'user_dashboard.html',
+        folders=folderlist,
+        pgnlist=pgnlist,
+    )
+
+
+@main.route('/lichessupload', methods=['POST', 'GET'])
+def lichessupload():
+    if request.method == 'POST':
+        try:
+            current_user = User.query.filter_by(email=session['email']).first()
+        except:
+            return render_template('webindex.html')
+
+        if request.form['name']:
+            game_name = request.form['name']
+
+        game_string = request.form['gamestring']
+
+        if str(game_string)[:5] == "liche":
+            game_string = game_string[12:]
+
+        elif str(game_string)[:5] == "http:":
+            game_string = game_string[19:]
+
+        elif str(game_string)[:5] == "https":
+            game_string = game_string[20:]
+
+        if len(game_string) != 8:
+            game_string = game_string[:8]
+
+        game_folder = request.form['folder']
+        lciframe = "http://lichess.org/embed/" + game_string + "?theme=wood4&bg=dark"
+        uid = current_user.id
+
+        re = requests.get("{}/{}".format(
+            'https://lichess.org/game/export',
+            game_string),
+            params={
+                'pgnInJson': 'true',
+                'clocks': 'fasle',
+                'opening': 'true'
+            }
+        )
+        new_pgn = pgn(
+            userId=uid,
+            game=re.text,
+            fileName=game_name,
+            folder=game_folder,
+            frame=lciframe
+        )
+        db.session.add(new_pgn)
+        db.session.commit()
+        return redirect(url_for('main.dashboard'))
+
+    try:
+        current_user = User.query.filter_by(email=session['email']).first()
+    except:
+        return render_template('webindex.html')
+
+    return render_template('lichessupload.html')
+
 
 @main.route('/lichessliterate', methods=['POST', 'GET'])
 def lichessliterate():
@@ -90,7 +215,7 @@ def lichessliterate():
     return render_template('lichessupload.html')
 
 
-@main.route('/mydatabase', methods=['GET'])
+@main.route('/mydatabase', methods=['POST', 'GET'])
 def mydatabase():
     gamelist = []
     games = db.session.query(pgn).all()
@@ -117,9 +242,12 @@ def mydatabase():
 
     folderlist = list(dict.fromkeys(folderlist))
 
-    ret = {"games": gamelist, "folders": folderlist, "pgnlist": pgnlist}
-
-    return ret
+    return render_template(
+        'users_database.html',
+        games=gamelist,
+        folders=folderlist,
+        pgnlist=pgnlist
+    )
 
 
 @main.route('/uploadpgn', methods=['POST', 'GET'])
